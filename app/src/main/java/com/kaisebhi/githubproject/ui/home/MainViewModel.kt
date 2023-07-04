@@ -1,5 +1,6 @@
 package com.kaisebhi.githubproject.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,6 +19,7 @@ class MainViewModel(private val repo: MainRepository): ViewModel() {
     val mutableLiveData: MutableLiveData<ResponseHandler<List<AllRepoEntity>>> = MutableLiveData()
     val liveData: LiveData<ResponseHandler<List<AllRepoEntity>>>
     get() = mutableLiveData
+    val TAG = "MainViewModel.kt"
 
     /**Below method to get all repo */
     fun getRepo(owner: String) {
@@ -34,7 +36,7 @@ class MainViewModel(private val repo: MainRepository): ViewModel() {
                 "This is description which is added by testing with android",
             false,
             "public"))
-            mutableLiveData.value = repo.mutableLiveData.value
+            getRepo(owner)
         }
     }
 }
